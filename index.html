@@ -23,8 +23,8 @@
         <h1>batterystaple.github.io</h1>
 
         <h2></h2>
-        <a href="https://github.com/batterystaple" class="button">
-            <small>Follow me on</small>
+        <a href="https://github.com/batterystaple/batterystaple.github.io" class="button">
+            <small>See source code at</small>
             GitHub</a>
     </div>
 </header>
@@ -33,8 +33,23 @@
     <div class="inner clearfix">
         <section id="main-content">
             <h1>
-                <a id="coming-soon" class="anchor" href="#coming-soon" aria-hidden="true"><span
-                        class="octicon octicon-link"></span></a>Coming Soon</h1>
+                <a id="password" class="anchor" href="#password" aria-hidden="true"><span
+                        class="octicon octicon-link"></span></a>Password</h1>
+            <pre id="generatedPassword"></pre>
+            <h1>
+                <a id="notes" class="anchor" href="#notes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Notes
+            </h1>
+            Based on a list of the most common <span id="wordCount"><i>{counting...}</i></span> words. All words are
+            lower case and only use the letters a-z. More specifically, the list does not contain
+            <ul>
+                <li>combined words like e-mail or long-term,</li>
+                <li>words with non-character letters like "o'clock", or</li>
+                <li>duplicates for words that are used as different parts of speech (e.g. "one" being a number but also
+                    a pronoun.)
+                </li>
+            </ul>
+            Words are chosen using client-side <a href="javascripts/main.js">JavaScript code</a> that does not use any
+            libraries. The code uses a cryptographically secure random number generator.
         </section>
 
         <aside id="sidebar">
