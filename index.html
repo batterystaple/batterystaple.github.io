@@ -8,12 +8,6 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <script src="javascripts/main.js"></script>
-
     <title>batterystaple.github.io by batterystaple</title>
 </head>
 
@@ -36,11 +30,23 @@
                 <a id="password" class="anchor" href="#password" aria-hidden="true"><span
                         class="octicon octicon-link"></span></a>Password</h1>
             <pre id="generatedPassword"></pre>
+            <div>
+                <label for="passwordLengthSelect">Number of words:</label>
+                <select id="passwordLengthSelect">
+                    <option value="4">4 (default)</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                </select>
+            </div>
+
             <h1>
                 <a id="notes" class="anchor" href="#notes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Notes
             </h1>
-            Based on a list of the most common <span id="wordCount"><i>{counting...}</i></span> words. All words are
-            lower case and only use the letters a-z. More specifically, the list does not contain
+
+            <p>Based on a list of the most common <span id="wordCount"><i>{counting...}</i></span> words. All words are
+                lower case and only use the letters a-z. More specifically, the list does not contain
             <ul>
                 <li>combined words like e-mail or long-term,</li>
                 <li>words with non-character letters like "o'clock", or</li>
@@ -48,8 +54,12 @@
                     a pronoun.)
                 </li>
             </ul>
-            Words are chosen using client-side <a href="javascripts/main.js">JavaScript code</a> that does not use any
-            libraries. The code uses a cryptographically secure random number generator.
+            </p>
+
+            <p>The selected number of words is stored in your browser's localStorage area.</p>
+
+            <p>Words are chosen using client-side <a href="javascripts/main.js">JavaScript code</a> that does not use
+                any libraries. The code uses a cryptographically secure random number generator.</p>
         </section>
 
         <aside id="sidebar">
@@ -60,5 +70,6 @@
 </div>
 
 
+<script src="javascripts/main.js"></script>
 </body>
 </html>
