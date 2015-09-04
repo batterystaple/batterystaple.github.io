@@ -13,11 +13,11 @@ passwordLengthSelect.addEventListener("change", function(event) {
 
 var request = new XMLHttpRequest();
 request.addEventListener("load", function() {
-    words = JSON.parse(this.responseText);
+    words = this.responseText.split(/\n/);
     display("wordCount", words.length);
     generate();
 });
-request.open("get", "words.json", true);
+request.open("get", "words.txt", true);
 request.send();
 
 function generate() {
