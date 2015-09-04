@@ -14,7 +14,7 @@ passwordLengthSelect.addEventListener("change", function(event) {
 var request = new XMLHttpRequest();
 request.addEventListener("load", function() {
     words = JSON.parse(this.responseText);
-    document.getElementById("wordCount").innerHTML = words.length;
+    display("wordCount", words.length);
     generate();
 });
 request.open("get", "words.json", true);
@@ -36,5 +36,9 @@ function generate() {
         // TODO: fall back to Math.random()
         throw "Unsupported browser";
     }
-    document.getElementById("generatedPassword").innerHTML = chosenWords.join(" ");
+    display("generatedPassword", chosenWords.join(" "));
+}
+
+function display(id, content) {
+    document.getElementById(id).textContent = content;
 }
