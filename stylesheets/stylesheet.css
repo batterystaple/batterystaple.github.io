@@ -878,3 +878,13 @@ footer a:hover {
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) { }
 
+/* Other styles
+================================================== */
+
+#error {
+  color: white;
+  background: red;
+  padding: 1em;
+  text-align: center;
+  font-size: 150%;
+}

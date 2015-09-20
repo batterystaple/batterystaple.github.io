@@ -21,24 +21,31 @@ request.open("get", "words.txt", true);
 request.send();
 
 function generate() {
-    var chosenWords = [];
     if ("crypto" in window && "getRandomValues" in window.crypto) {
         var numbers = new Uint32Array(passwordLength);
         window.crypto.getRandomValues(numbers);
 
+        var chosenWords = [];
         var maxUint32 = Math.pow(2,32) - 1;
         for (var i = 0; i < numbers.length; i++) {
             // Rounding down means we never reach words.length, which is good because the highest array index is length-1.
             var index = Math.floor(numbers[i] / maxUint32 * words.length);
             chosenWords.push(words[index]);
         }
+        display("generatedPassword", chosenWords.join(" "));
     } else {
-        // TODO: fall back to Math.random()
-        throw "Unsupported browser";
+        showError("Your browser does not support the required feature 'window.crypto'. Try upgrading.");
     }
-    display("generatedPassword", chosenWords.join(" "));
 }
 
 function display(id, content) {
     document.getElementById(id).textContent = content;
+}
+
+function showError(message) {
+    var content = document.getElementById("main-content");
+    var error = document.createElement("p");
+    error.setAttribute("id", "error");
+    error.appendChild(document.createTextNode(message));
+    content.insertBefore(error, content.firstChild);
 }
