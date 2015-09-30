@@ -8,13 +8,13 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-    <title>batterystaple.github.io by batterystaple</title>
+    <title>battery staple</title>
 </head>
 
 <body>
 <header>
     <div class="inner">
-        <h1>batterystaple.github.io</h1>
+        <h1>battery staple</h1>
 
         <h2></h2>
         <a href="https://github.com/batterystaple/batterystaple.github.io" class="button">
@@ -30,6 +30,10 @@
                 <a id="password" class="anchor" href="#password" aria-hidden="true"><span
                         class="octicon octicon-link"></span></a>Password</h1>
             <pre id="generatedPassword"></pre>
+
+            <h1>
+                <a id="settings" class="anchor" href="#settings" aria-hidden="true"><span
+                        class="octicon octicon-link"></span></a>Settings</h1>
             <div>
                 <label for="passwordLengthSelect">Number of words:</label>
                 <select id="passwordLengthSelect">
@@ -40,27 +44,11 @@
                     <option>8</option>
                 </select>
             </div>
-
-            <h1>
-                <a id="notes" class="anchor" href="#notes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Notes
-            </h1>
-
-            <p>Based on <a href="words.txt">a list</a> of the most common <span
-                    id="wordCount"><i>{counting...}</i></span> words. All words are
-                lower case and only use the letters a-z. More specifically, the list does not contain
-            <ul>
-                <li>combined words like e-mail or long-term,</li>
-                <li>words with non-character letters like "o'clock", or</li>
-                <li>duplicates for words that are used as different parts of speech (e.g. "one" being a number but also
-                    a pronoun.)
-                </li>
-            </ul>
-            </p>
-
-            <p>The selected number of words is stored in your browser's localStorage area.</p>
-
-            <p>Words are chosen using client-side <a href="javascripts/main.js">JavaScript code</a> that does not use
-                any libraries. The code uses a cryptographically secure random number generator.</p>
+            <div>
+                <input id="useSpacesCheckbox" type="checkbox"><label for="useSpacesCheckbox">Add space character between words (default: off)</label>
+                <p>Note that adding spaces does not make the password safer. Also, some systems do not allow spaces in passwords.</p>
+            </div>
+            <p>Settings are stored in your browser's localStorage area for your next visit.</p>
         </section>
 
         <aside id="sidebar">
@@ -68,6 +56,13 @@
                 #936: Password strength</a>. Some background on this can be found on Security Stack Exchange: <a
                     href="http://security.stackexchange.com/q/6095/49360">Short complex password, or long dictionary
                 passphrase?</a>.</p>
+
+            <p>Based on <a href="words.txt">a list</a> of the most common <span
+                    id="wordCount"><i>{counting...}</i></span> english words. All words are
+                lower case and only use the characters a-z.</p>
+
+            <p>Words are chosen using client-side <a href="javascripts/main.js">JavaScript code</a> that does not use
+                any libraries. The code uses a cryptographically secure random number generator.</p>
 
             <p>This page uses the GitHub pages "Architect" theme
                 by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>

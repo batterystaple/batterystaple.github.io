@@ -888,3 +888,15 @@ footer a:hover {
   text-align: center;
   font-size: 150%;
 }
+
+#generatedPassword span:nth-child(even) {
+  color: red;
+}
+
+#generatedPassword span:nth-child(odd) {
+  color: green;
+}
+
+input[type=checkbox] {
+  margin-right: 0.5em;
+}
