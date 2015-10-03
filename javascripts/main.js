@@ -31,6 +31,8 @@ function generate() {
         window.crypto.getRandomValues(numbers);
 
         var generatedPassword = document.getElementById("generatedPassword");
+        generatedPassword.innerHTML = "";
+
         var maxUint32 = Math.pow(2,32) - 1;
         for (var i = 0; i < numbers.length; i++) {
             // Rounding down means we never reach words.length, which is good because the highest array index is length-1.
@@ -49,6 +51,8 @@ function generate() {
         showError("Your browser does not support the required feature 'window.crypto'. Try upgrading.");
     }
 }
+
+document.getElementById("new").addEventListener("click", generate);
 
 function showError(message) {
     var content = document.getElementById("main-content");

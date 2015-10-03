@@ -29,11 +29,16 @@
             <h1>
                 <a id="password" class="anchor" href="#password" aria-hidden="true"><span
                         class="octicon octicon-link"></span></a>Password</h1>
-            <pre id="generatedPassword"></pre>
+
+            <div id="passwordArea">
+                <pre id="generatedPassword"></pre>
+                <button id="new">New Password</button>
+            </div>
 
             <h1>
                 <a id="settings" class="anchor" href="#settings" aria-hidden="true"><span
                         class="octicon octicon-link"></span></a>Settings</h1>
+
             <div>
                 <label for="passwordLengthSelect">Number of words:</label>
                 <select id="passwordLengthSelect">
@@ -45,21 +50,35 @@
                 </select>
             </div>
             <div>
-                <input id="useSpacesCheckbox" type="checkbox"><label for="useSpacesCheckbox">Add space character between words (default: off)</label>
-                <p>Note that adding spaces does not make the password safer. Also, some systems do not allow spaces in passwords.</p>
+                <input id="useSpacesCheckbox" type="checkbox"><label for="useSpacesCheckbox">Add space character between
+                words (default: off)</label>
             </div>
-            <p>Settings are stored in your browser's localStorage area for your next visit.</p>
+
+            <h1>
+                <a id="settings" class="anchor" href="#settings" aria-hidden="true"><span
+                        class="octicon octicon-link"></span></a>Notes</h1>
+            <ul>
+                <li>Do <b>not</b> try to find a password which uses words you like or know. Doing so will make your
+                    password weaker.
+                </li>
+                <li>Adding spaces is not recommended as it does not make the password safer. Also, some systems do not
+                    allow spaces in passwords.
+                </li>
+            </ul>
+
         </section>
 
         <aside id="sidebar">
             <p>Inspired by the "correct horse battery staple" scheme outlined in <a href="http://xkcd.com/936/">XKCD
                 #936: Password strength</a>. Some background on this can be found on Security Stack Exchange: <a
                     href="http://security.stackexchange.com/q/6095/49360">Short complex password, or long dictionary
-                passphrase?</a>.</p>
+                passphrase?</a></p>
 
             <p>Based on <a href="words.txt">a list</a> of the most common <span
                     id="wordCount"><i>{counting...}</i></span> english words. All words are
                 lower case and only use the characters a-z.</p>
+
+            <p>Settings are stored in your browser's localStorage area for your next visit.</p>
 
             <p>Words are chosen using client-side <a href="javascripts/main.js">JavaScript code</a> that does not use
                 any libraries. The code uses a cryptographically secure random number generator.</p>
