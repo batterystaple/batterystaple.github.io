@@ -1,26 +1,19 @@
-var passwordLengthSelect = document.getElementById("passwordLengthSelect");
-
-var passwordLength = 4;
-if ("passwordLength" in localStorage) {
-    passwordLength = parseInt(localStorage.passwordLength);
-    passwordLengthSelect.value = passwordLength;
+if (!("passwordLength" in localStorage)) {
+    localStorage.passwordLength = "4";
 }
-
+var passwordLengthSelect = document.getElementById("passwordLengthSelect");
+passwordLengthSelect.value = localStorage.passwordLength;
 passwordLengthSelect.addEventListener("change", function(event) {
-    passwordLength = parseInt(this.value);
-    localStorage.passwordLength = passwordLength;
+    localStorage.passwordLength = this.value;
 });
 
-var useSpacesCheckbox = document.getElementById("useSpacesCheckbox");
-var useSpaces = false;
-if ("useSpaces" in localStorage) {
-    useSpaces = (localStorage.useSpaces == "true");
-    useSpacesCheckbox.checked = useSpaces;
+if (!("useSpaces" in localStorage)) {
+    localStorage.useSpaces = false;
 }
-
+var useSpacesCheckbox = document.getElementById("useSpacesCheckbox");
+useSpacesCheckbox.checked = localStorage.useSpaces == "true";
 useSpacesCheckbox.addEventListener("change", function(event) {
-    useSpaces = useSpacesCheckbox.checked;
-    localStorage.useSpaces = useSpaces;
+    localStorage.useSpaces = this.checked;
 });
 
 var request = new XMLHttpRequest();
@@ -34,7 +27,7 @@ request.send();
 
 function generate() {
     if ("crypto" in window && "getRandomValues" in window.crypto) {
-        var numbers = new Uint32Array(passwordLength);
+        var numbers = new Uint32Array(parseInt(localStorage.passwordLength));
         window.crypto.getRandomValues(numbers);
 
         var generatedPassword = document.getElementById("generatedPassword");
@@ -44,7 +37,7 @@ function generate() {
             var index = Math.floor(numbers[i] / maxUint32 * words.length);
 
             var text = words[index];
-            if (useSpaces && i < numbers.length - 1) {
+            if (localStorage.useSpaces == "true" && i < numbers.length - 1) {
                 text += " ";
             }
 
