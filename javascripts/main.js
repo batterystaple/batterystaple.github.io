@@ -54,7 +54,7 @@ function generate() {
             var randomInt = new Uint32Array(1);
             window.crypto.getRandomValues(numbers);
             // Rounding up means we never get 0
-            var number = Math.ceil(numbers[0] / maxUint32 * 100);
+            var number = Math.ceil(numbers[0] / maxUint32 * 10);
             passwordParts.push(number);
         }
 
