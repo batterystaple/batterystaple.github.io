@@ -7,23 +7,18 @@ passwordLengthSelect.addEventListener("change", function(event) {
     localStorage.passwordLength = this.value;
 });
 
-if (!("addNumber" in localStorage)) {
-    localStorage.addNumber = false;
+function setupCheckbox(checkboxId, optionKey, defaultValue) {
+    if (!(optionKey in localStorage)) {
+        localStorage[optionKey] = defaultValue;
+    }
+    var checkbox = document.getElementById(checkboxId);
+    checkbox.checked = localStorage[optionKey] == "true";
+    checkbox.addEventListener("change", function() {
+        localStorage[optionKey] = this.checked;
+    });
 }
-var addNumberCheckbox = document.getElementById("addNumberCheckbox");
-addNumberCheckbox.checked = localStorage.addNumber == "true";
-addNumberCheckbox.addEventListener("change", function(event) {
-    localStorage.addNumber = this.checked;
-});
-
-if (!("useSpaces" in localStorage)) {
-    localStorage.useSpaces = false;
-}
-var useSpacesCheckbox = document.getElementById("useSpacesCheckbox");
-useSpacesCheckbox.checked = localStorage.useSpaces == "true";
-useSpacesCheckbox.addEventListener("change", function(event) {
-    localStorage.useSpaces = this.checked;
-});
+setupCheckbox("addNumberCheckbox", "addNumber", false);
+setupCheckbox("useSpacesCheckbox", "useSpaces", false);
 
 var request = new XMLHttpRequest();
 request.addEventListener("load", function() {
@@ -70,7 +65,7 @@ function generate() {
             }
 
             var span = document.createElement("span");
-            span.appendChild(document.createTextNode(text));
+            span.textContent = text;
             generatedPassword.appendChild(span);
 
             passwordText += text;
@@ -79,7 +74,6 @@ function generate() {
         showError("Your browser does not support the required feature 'window.crypto'. Try upgrading.");
     }
 }
-
 document.getElementById("new").addEventListener("click", generate);
 
 function passwordToClipboard() {
@@ -94,7 +88,7 @@ document.getElementById("clear").addEventListener("click", clearClipboard);
 
 function copyToClipboard(text) {
     var toClipboard = document.getElementById("toClipboard");
-    toClipboard.appendChild(document.createTextNode(text));
+    toClipboard.textContent = text;
 
     var range = document.createRange();
     range.selectNode(toClipboard);
@@ -118,6 +112,6 @@ function showError(message) {
     var content = document.getElementById("main-content");
     var error = document.createElement("p");
     error.setAttribute("id", "error");
-    error.appendChild(document.createTextNode(message));
+    error.textContent = message;
     content.insertBefore(error, content.firstChild);
 }
