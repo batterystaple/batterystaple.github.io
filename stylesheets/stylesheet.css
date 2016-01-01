@@ -905,6 +905,7 @@ button {
   background: #9DDCFF;
   color: #474747;
   margin: 0 0.6em 0.6em 0;
+  box-shadow: 0.25em 0.25em 0.5em rgba(157, 220, 255, 0.5);
 }
 
 button:active {
