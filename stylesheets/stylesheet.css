@@ -898,13 +898,20 @@ input[type=checkbox] {
   margin-right: 0.5em;
 }
 
-#passwordArea {
-  position: relative;
+button {
+  border: 2px solid #9DDCFF;
+  border-radius: 0.8em;
+  padding: 0.3em 0.8em;
+  background: #9DDCFF;
+  color: #474747;
+  margin: 0 0.6em 0.6em 0;
 }
-#passwordArea button {
-  position: absolute;
-  right: 1em;
-  top: 50%;
-  height: 2em;
-  margin-top: -1em;
+
+button:active {
+  background-color: white;
+  color: #2e7bcf;
+}
+
+#buttons {
+  cursor: default;
 }

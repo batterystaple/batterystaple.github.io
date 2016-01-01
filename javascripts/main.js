@@ -25,6 +25,8 @@ request.addEventListener("load", function() {
 request.open("get", "words.txt", true);
 request.send();
 
+var passwordText;
+
 function generate() {
     if ("crypto" in window && "getRandomValues" in window.crypto) {
         var numbers = new Uint32Array(parseInt(localStorage.passwordLength));
@@ -32,6 +34,7 @@ function generate() {
 
         var generatedPassword = document.getElementById("generatedPassword");
         generatedPassword.innerHTML = "";
+        passwordText = "";
 
         var maxUint32 = Math.pow(2,32) - 1;
         for (var i = 0; i < numbers.length; i++) {
@@ -46,13 +49,46 @@ function generate() {
             var span = document.createElement("span");
             span.appendChild(document.createTextNode(text));
             generatedPassword.appendChild(span);
+
+            passwordText += text;
         }
     } else {
         showError("Your browser does not support the required feature 'window.crypto'. Try upgrading.");
     }
 }
-
 document.getElementById("new").addEventListener("click", generate);
+
+function passwordToClipboard() {
+    copyToClipboard(passwordText);
+}
+document.getElementById("copy").addEventListener("click", passwordToClipboard);
+
+function clearClipboard() {
+    copyToClipboard("");
+}
+document.getElementById("clear").addEventListener("click", clearClipboard);
+
+function copyToClipboard(text) {
+    var toClipboard = document.getElementById("toClipboard");
+    toClipboard.appendChild(document.createTextNode(text));
+
+    var range = document.createRange();
+    range.selectNode(toClipboard);
+    window.getSelection().addRange(range);
+
+    var successful;
+    try {
+        successful = document.execCommand('copy');
+    } catch (error) {
+        successful = false;
+    }
+    if (!successful) {
+        showError("Could not copy to clipboard.")
+    }
+
+    window.getSelection().removeAllRanges();
+    toClipboard.innerHTML = "";
+}
 
 function showError(message) {
     var content = document.getElementById("main-content");
