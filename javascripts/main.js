@@ -7,6 +7,15 @@ passwordLengthSelect.addEventListener("change", function(event) {
     localStorage.passwordLength = this.value;
 });
 
+if (!("addNumber" in localStorage)) {
+    localStorage.addNumber = false;
+}
+var addNumberCheckbox = document.getElementById("addNumberCheckbox");
+addNumberCheckbox.checked = localStorage.addNumber == "true";
+addNumberCheckbox.addEventListener("change", function(event) {
+    localStorage.addNumber = this.checked;
+});
+
 if (!("useSpaces" in localStorage)) {
     localStorage.useSpaces = false;
 }
@@ -32,6 +41,8 @@ function generate() {
         var numbers = new Uint32Array(parseInt(localStorage.passwordLength));
         window.crypto.getRandomValues(numbers);
 
+        var passwordParts = new Array();
+
         var generatedPassword = document.getElementById("generatedPassword");
         generatedPassword.innerHTML = "";
         passwordText = "";
@@ -41,8 +52,20 @@ function generate() {
             // Rounding down means we never reach words.length, which is good because the highest array index is length-1.
             var index = Math.floor(numbers[i] / maxUint32 * words.length);
 
-            var text = words[index];
-            if (localStorage.useSpaces == "true" && i < numbers.length - 1) {
+            var word = words[index];
+            passwordParts.push(word);
+        }
+        if (localStorage.addNumber == "true") {
+            var randomInt = new Uint32Array(1);
+            window.crypto.getRandomValues(numbers);
+            // Rounding up means we never get 0
+            var number = Math.ceil(numbers[0] / maxUint32 * 100);
+            passwordParts.push(number);
+        }
+
+        for (var i = 0; i < passwordParts.length; i++) {
+            var text = passwordParts[i];
+            if (localStorage.useSpaces == "true" && i < passwordParts.length - 1) {
                 text += " ";
             }
 
@@ -56,6 +79,7 @@ function generate() {
         showError("Your browser does not support the required feature 'window.crypto'. Try upgrading.");
     }
 }
+
 document.getElementById("new").addEventListener("click", generate);
 
 function passwordToClipboard() {
