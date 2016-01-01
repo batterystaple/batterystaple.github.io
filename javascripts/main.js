@@ -12,7 +12,7 @@ function setupCheckbox(checkboxId, optionKey, defaultValue) {
         localStorage[optionKey] = defaultValue;
     }
     var checkbox = document.getElementById(checkboxId);
-    checkbox.checked = localStorage[optionKey] == "true";
+    checkbox.checked = optionEnabled(optionKey);
     checkbox.addEventListener("change", function() {
         localStorage[optionKey] = this.checked;
     });
@@ -49,12 +49,12 @@ function generate() {
             var index = Math.floor(numbers[i] / maxUint32 * words.length);
 
             var word = words[index];
-            if (localStorage.capitalize == "true") {
+            if (optionEnabled("capitalize")) {
                 word = word.charAt(0).toUpperCase() + word.slice(1);
             }
             passwordParts.push(word);
         }
-        if (localStorage.addNumber == "true") {
+        if (optionEnabled("addNumber")) {
             var randomInt = new Uint32Array(1);
             window.crypto.getRandomValues(numbers);
             // Rounding up means we never get 0
@@ -64,7 +64,7 @@ function generate() {
 
         for (var i = 0; i < passwordParts.length; i++) {
             var text = passwordParts[i];
-            if (localStorage.useSpaces == "true" && i < passwordParts.length - 1) {
+            if (optionEnabled("useSpaces") && i < passwordParts.length - 1) {
                 text += " ";
             }
 
@@ -110,6 +110,10 @@ function copyToClipboard(text) {
 
     window.getSelection().removeAllRanges();
     toClipboard.innerHTML = "";
+}
+
+function optionEnabled(optionKey) {
+    return localStorage[optionKey] == "true";
 }
 
 function showError(message) {
