@@ -908,8 +908,7 @@ button {
 }
 
 button:active {
-  background-color: white;
-  color: #2e7bcf;
+  background-color: transparent;
 }
 
 #buttons {
