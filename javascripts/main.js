@@ -18,6 +18,7 @@ function setupCheckbox(checkboxId, optionKey, defaultValue) {
     });
 }
 setupCheckbox("addNumberCheckbox", "addNumber", false);
+setupCheckbox("capitalizeCheckbox", "capitalize", false);
 setupCheckbox("useSpacesCheckbox", "useSpaces", false);
 
 var request = new XMLHttpRequest();
@@ -48,6 +49,9 @@ function generate() {
             var index = Math.floor(numbers[i] / maxUint32 * words.length);
 
             var word = words[index];
+            if (localStorage.capitalize == "true") {
+                word = word.charAt(0).toUpperCase() + word.slice(1);
+            }
             passwordParts.push(word);
         }
         if (localStorage.addNumber == "true") {
