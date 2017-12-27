@@ -1,109 +1,108 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-    <title>battery staple</title>
-</head>
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+        <title>battery staple</title>
+    </head>
 
-<body>
-<header>
-    <div class="inner">
-        <h1>battery staple</h1>
+    <body>
+        <header>
+            <div class="inner">
+                <h1>battery staple</h1>
 
-        <h2></h2>
-        <a href="https://github.com/batterystaple/batterystaple.github.io" class="button">
-            <small>See source code at</small>
-            GitHub</a>
-    </div>
-</header>
-
-<div id="content-wrapper">
-    <div class="inner clearfix">
-        <section id="main-content">
-            <h1>
-                <a id="password" class="anchor" href="#password" aria-hidden="true"><span
-                        class="octicon octicon-link"></span></a>Password</h1>
-
-            <div id="passwordArea">
-                <pre id="generatedPassword"></pre>
+                <h2></h2>
+                <a href="https://github.com/batterystaple/batterystaple.github.io" class="button">
+                    <small>See source code at</small>
+                    GitHub</a>
             </div>
-            <div id="buttons">
-                <button id="copy">Copy to clipboard</button>
-                <span style="" id="toClipboard"></span>
-                <button id="clear">Clear clipboard</button>
-                <button id="new">New password</button>
+        </header>
+
+        <div id="content-wrapper">
+            <div class="inner clearfix">
+                <section id="main-content">
+                    <h1>
+                        <a id="password" class="anchor" href="#password" aria-hidden="true"><span
+                                class="octicon octicon-link"></span></a>Password</h1>
+
+                    <div id="passwordArea">
+                        <pre id="generatedPassword"></pre>
+                    </div>
+                    <div id="buttons">
+                        <button id="copy">Copy to clipboard</button>
+                        <span style="" id="toClipboard"></span>
+                        <button id="clear">Clear clipboard</button>
+                        <button id="new">New password</button>
+                    </div>
+
+                    <h1>
+                        <a id="settings" class="anchor" href="#settings" aria-hidden="true"><span
+                                class="octicon octicon-link"></span></a>Settings</h1>
+
+                    <div>
+                        <label for="passwordLengthSelect">Number of words:</label>
+                        <select id="passwordLengthSelect">
+                            <option value="4">4 (default)</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                        </select><br>
+
+                        <input id="capitalizeCheckbox" type="checkbox"><label for="capitalizeCheckbox">Capitalize words
+                        (default: off)</label><br>
+
+                        <input id="addNumberCheckbox" type="checkbox"><label for="addNumberCheckbox">Add number between
+                        1 and 10 (default: off)</label><br>
+
+                        <input id="useSpacesCheckbox" type="checkbox"><label for="useSpacesCheckbox">Add space character
+                        between words (default: off)</label>
+                    </div>
+
+                    <h1>
+                        <a id="notes" class="anchor" href="#settings" aria-hidden="true"><span
+                                class="octicon octicon-link"></span></a>Notes</h1>
+                    <ul>
+                        <li>Do <b>not</b> try to find a password which uses words you like or know. Doing so will make
+                            your password weaker.
+                        </li>
+                        <li>Adding spaces is not recommended as it does not make the password safer. Also, some systems
+                            do not allow spaces in passwords.
+                        </li>
+                        <li>Capitalizing words or including random numbers does not make password guessing significantly
+                            harder, but may be necessary to satisfy the password requirements of some systems.
+                        </li>
+                    </ul>
+
+                </section>
+
+                <aside id="sidebar">
+                    <p>Inspired by the "correct horse battery staple" scheme outlined in <a
+                            href="https://xkcd.com/936/">XKCD #936: Password strength</a>. Some background on this can
+                        be found on Security Stack Exchange: <a href="https://security.stackexchange.com/q/6095/49360">Short
+                            complex password, or long dictionary passphrase?</a></p>
+
+                    <p>Based on <a href="words.txt">a list</a> of the most common <span
+                            id="wordCount"><i>{counting...}</i></span> english words. All words only use the characters
+                        a-z and default to lower case.</p>
+
+                    <p>Settings are stored in your browser's localStorage area for your next visit.</p>
+
+                    <p>Words are chosen using client-side <a href="javascripts/main.js">JavaScript code</a> that does
+                        not use any libraries. The code uses a cryptographically secure random number generator.</p>
+
+                    <p>This page uses the GitHub pages "Architect" theme by <a href="https://twitter.com/jasonlong">Jason
+                        Long</a>.</p>
+                </aside>
             </div>
-
-            <h1>
-                <a id="settings" class="anchor" href="#settings" aria-hidden="true"><span
-                        class="octicon octicon-link"></span></a>Settings</h1>
-
-            <div>
-                <label for="passwordLengthSelect">Number of words:</label>
-                <select id="passwordLengthSelect">
-                    <option value="4">4 (default)</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                </select><br>
-
-                <input id="capitalizeCheckbox" type="checkbox"><label for="capitalizeCheckbox">Capitalize words
-                (default: off)</label><br>
-
-                <input id="addNumberCheckbox" type="checkbox"><label for="addNumberCheckbox">Add number between 1 and
-                10 (default: off)</label><br>
-
-                <input id="useSpacesCheckbox"
-                       type="checkbox"><label
-                    for="useSpacesCheckbox">Add space character between words (default: off)</label>
-            </div>
-
-            <h1>
-                <a id="notes" class="anchor" href="#settings" aria-hidden="true"><span
-                        class="octicon octicon-link"></span></a>Notes</h1>
-            <ul>
-                <li>Do <b>not</b> try to find a password which uses words you like or know. Doing so will make your
-                    password weaker.
-                </li>
-                <li>Adding spaces is not recommended as it does not make the password safer. Also, some systems do not
-                    allow spaces in passwords.
-                </li>
-                <li>Capitalizing words or including random numbers does not make password guessing significantly harder,
-                    but may be necessary to satisfy the password requirements of some systems.
-                </li>
-            </ul>
-
-        </section>
-
-        <aside id="sidebar">
-            <p>Inspired by the "correct horse battery staple" scheme outlined in <a href="https://xkcd.com/936/">XKCD
-                #936: Password strength</a>. Some background on this can be found on Security Stack Exchange: <a
-                    href="https://security.stackexchange.com/q/6095/49360">Short complex password, or long dictionary
-                passphrase?</a></p>
-
-            <p>Based on <a href="words.txt">a list</a> of the most common <span
-                    id="wordCount"><i>{counting...}</i></span> english words. All words only use the characters a-z and
-                default to lower case.</p>
-
-            <p>Settings are stored in your browser's localStorage area for your next visit.</p>
-
-            <p>Words are chosen using client-side <a href="javascripts/main.js">JavaScript code</a> that does not use
-                any libraries. The code uses a cryptographically secure random number generator.</p>
-
-            <p>This page uses the GitHub pages "Architect" theme
-                by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-    </div>
-</div>
+        </div>
 
 
-<script src="javascripts/main.js"></script>
-</body>
+        <script src="javascripts/main.js"></script>
+    </body>
 </html>
