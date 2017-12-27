@@ -5,6 +5,7 @@ var passwordLengthSelect = document.getElementById("passwordLengthSelect");
 passwordLengthSelect.value = localStorage.passwordLength;
 passwordLengthSelect.addEventListener("change", function(event) {
     localStorage.passwordLength = this.value;
+    displayStrength();
 });
 
 function setupCheckbox(checkboxId, optionKey, defaultValue) {
@@ -15,6 +16,7 @@ function setupCheckbox(checkboxId, optionKey, defaultValue) {
     checkbox.checked = optionEnabled(optionKey);
     checkbox.addEventListener("change", function() {
         localStorage[optionKey] = this.checked;
+        displayStrength();
     });
 }
 setupCheckbox("addNumberCheckbox", "addNumber", false);
@@ -25,6 +27,7 @@ var request = new XMLHttpRequest();
 request.addEventListener("load", function() {
     words = this.responseText.split(/\n/);
     document.getElementById("wordCount").textContent = words.length;
+    displayStrength();
     generate();
 });
 request.open("get", "words.txt", true);
@@ -122,4 +125,17 @@ function showError(message) {
     error.setAttribute("id", "error");
     error.textContent = message;
     content.insertBefore(error, content.firstChild);
+}
+
+function displayStrength() {
+    var permutations = Math.pow(words.length, localStorage.passwordLength);
+    var bits = Math.log2(permutations);
+    if (optionEnabled("addNumber")) {
+        bits += 3.322;
+    }
+    document.getElementById("passwordStrength").textContent = Math.round(bits);
+
+    var classicSymbolCount = 26 + 26 + 10 + "!@#$%^&*".length;
+    var classicPasswordLength = Math.log(permutations) / Math.log(classicSymbolCount);
+    document.getElementById("classicPasswordLength").textContent = Math.ceil(classicPasswordLength);
 }
