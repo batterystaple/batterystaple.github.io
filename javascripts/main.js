@@ -23,9 +23,14 @@ setupCheckbox("addNumberCheckbox", "addNumber", false);
 setupCheckbox("capitalizeCheckbox", "capitalize", false);
 setupCheckbox("useSpacesCheckbox", "useSpaces", false);
 
+var words;
 var request = new XMLHttpRequest();
 request.addEventListener("load", function() {
     words = this.responseText.split(/\n/);
+    if (words[words.length - 1] == "") {
+        words.splice(-1, 1);
+    }
+
     document.getElementById("wordCount").textContent = words.length;
     displayStrength();
     generate();
